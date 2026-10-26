@@ -18,17 +18,17 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#ffffff",
+  themeColor: "#F9F8F6",
 };
 
 export const metadata: Metadata = {
-  title: "모사주지 (mwasajuji) | 실패 없는 선물 큐레이션",
-  description: "관계, 상황, 현실적인 적정 가격대, 부담 지수에 맞춘 모바일 특화 선물 큐레이션 플랫폼",
+  title: "뭐사주지 (MWASAJUJI) | 선 넘지 않는 선물 큐레이션",
+  description: "29CM 감성의 현실적인 모바일 선물 가이드. 관계, 예산, 팩폭 코멘트로 찾는 실패 없는 선물",
   openGraph: {
-    title: "모사주지 (mwasajuji) | 고민 없는 선물 큐레이션",
-    description: "찐친, 지인, 직장동료에게 선물할 때? 부담 지수로 찾는 3초 선물 추천!",
+    title: "뭐사주지 | 선 넘지 않는 선물 큐레이션",
+    description: "선 넘지 않는 선물 큐레이션. 1초 만에 찜하고 카톡으로 툭 던지기!",
     url: "https://mwasajuji.app",
-    siteName: "모사주지",
+    siteName: "뭐사주지",
     locale: "ko_KR",
     type: "website",
   },
@@ -44,8 +44,9 @@ export default function RootLayout({
       lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-zinc-100/90 text-zinc-900 flex justify-center selection:bg-orange-500 selection:text-white">
-        <div className="w-full max-w-[430px] min-h-screen bg-white shadow-2xl relative flex flex-col border-x border-zinc-200/60">
+      <body className="min-h-full bg-[#EAE8E3] text-[#18181B] flex justify-center">
+        {/* Mobile Device Frame */}
+        <div className="w-full max-w-[430px] min-h-screen bg-[#F9F8F6] shadow-[0_20px_60px_rgba(0,0,0,0.08)] relative flex flex-col border-x border-stone-200/80">
           <Toast />
           {children}
         </div>

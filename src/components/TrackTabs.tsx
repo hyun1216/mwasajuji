@@ -1,9 +1,7 @@
 'use client';
 
 import { useGiftStore } from '@/store/useGiftStore';
-import { RELATIONSHIP_CATEGORIES, THEME_CATEGORIES } from '@/data/mockProducts';
-import { Users, Compass } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { RELATIONSHIP_CATEGORIES, THEME_CATEGORIES, SNS_CATEGORIES } from '@/data/mockProducts';
 
 export default function TrackTabs() {
   const { 
@@ -13,69 +11,75 @@ export default function TrackTabs() {
     setSelectedCategory 
   } = useGiftStore();
 
-  const categories = activeTrack === 'relationship' 
-    ? RELATIONSHIP_CATEGORIES 
-    : THEME_CATEGORIES;
+  const categories = 
+    activeTrack === 'relationship' 
+      ? RELATIONSHIP_CATEGORIES 
+      : activeTrack === 'theme'
+      ? THEME_CATEGORIES
+      : SNS_CATEGORIES;
 
   return (
-    <div className="space-y-3 pt-1">
-      {/* 2-Track Main Switcher */}
-      <div className="grid grid-cols-2 p-1 bg-zinc-100 rounded-2xl">
+    <div className="space-y-3.5 pt-1">
+      {/* Magazine Index Style Segment */}
+      <div className="flex items-center border-b border-stone-200 overflow-x-auto no-scrollbar gap-1">
         <button
           onClick={() => setActiveTrack('relationship')}
-          className={`relative flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-bold transition-all ${
+          className={`relative pb-2.5 px-3 text-xs font-black tracking-tight whitespace-nowrap transition-all ${
             activeTrack === 'relationship'
-              ? 'text-zinc-900 shadow-sm'
-              : 'text-zinc-500 hover:text-zinc-800'
+              ? 'text-[#18181B]'
+              : 'text-stone-400 hover:text-stone-700'
           }`}
         >
+          <span>누구 줄까?</span>
           {activeTrack === 'relationship' && (
-            <motion.div
-              layoutId="trackTab"
-              className="absolute inset-0 bg-white rounded-xl shadow-sm"
-              transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
-            />
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#18181B]" />
           )}
-          <span className="relative z-10 flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5 text-orange-500" />
-            <span>관계 중심 (시그니처)</span>
-          </span>
         </button>
 
         <button
           onClick={() => setActiveTrack('theme')}
-          className={`relative flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-bold transition-all ${
+          className={`relative pb-2.5 px-3 text-xs font-black tracking-tight whitespace-nowrap transition-all ${
             activeTrack === 'theme'
-              ? 'text-zinc-900 shadow-sm'
-              : 'text-zinc-500 hover:text-zinc-800'
+              ? 'text-[#18181B]'
+              : 'text-stone-400 hover:text-stone-700'
           }`}
         >
+          <span>무슨 날이야?</span>
           {activeTrack === 'theme' && (
-            <motion.div
-              layoutId="trackTab"
-              className="absolute inset-0 bg-white rounded-xl shadow-sm"
-              transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
-            />
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#18181B]" />
           )}
-          <span className="relative z-10 flex items-center gap-1.5">
-            <Compass className="w-3.5 h-3.5 text-rose-500" />
-            <span>이벤트/기념일 중심</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTrack('sns_hot')}
+          className={`relative pb-2.5 px-3 text-xs font-black tracking-tight whitespace-nowrap transition-all ${
+            activeTrack === 'sns_hot'
+              ? 'text-[#18181B]'
+              : 'text-stone-400 hover:text-stone-700'
+          }`}
+        >
+          <span className="flex items-center gap-1">
+            <span>요즘 핫한 거</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E14337] animate-pulse" />
           </span>
+          {activeTrack === 'sns_hot' && (
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#18181B]" />
+          )}
         </button>
       </div>
 
-      {/* Horizontal Sub-Category Chips */}
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 scroll-smooth">
-        {/* '전체' Chip */}
+      {/* Horizontal Editorial Sub-Category Chips */}
+      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 -mx-4 px-4 scroll-smooth">
+        {/* '전체보기' Chip */}
         <button
           onClick={() => setSelectedCategory('all')}
-          className={`px-3.5 py-2 rounded-2xl text-xs font-bold shrink-0 transition-all border ${
+          className={`px-3 py-1.5 rounded-full text-xs font-bold shrink-0 transition-all ${
             selectedCategory === 'all'
-              ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm'
-              : 'bg-white text-zinc-600 border-zinc-200 hover:border-zinc-300'
+              ? 'bg-[#18181B] text-[#FAF7F2] shadow-xs'
+              : 'bg-white text-stone-600 border border-stone-200/80 hover:border-stone-400'
           }`}
         >
-          전체보기
+          ALL
         </button>
 
         {categories.map((cat) => {
@@ -84,10 +88,10 @@ export default function TrackTabs() {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id as any)}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-2xl text-xs font-bold shrink-0 transition-all border ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold shrink-0 transition-all ${
                 isSelected
-                  ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm'
-                  : 'bg-white text-zinc-600 border-zinc-200 hover:border-zinc-300'
+                  ? 'bg-[#18181B] text-[#FAF7F2] shadow-xs'
+                  : 'bg-white text-stone-700 border border-stone-200/80 hover:border-stone-400'
               }`}
             >
               <span>{cat.emoji}</span>

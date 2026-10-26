@@ -3,29 +3,36 @@ export type RelationshipType =
   | 'awkward' 
   | 'coworker' 
   | 'parents' 
-  | 'couple';
+  | 'couple'
+  | 'single_life'
+  | 'for_me';
 
 export type ThemeType = 
   | 'useless' 
-  | 'single_life' 
+  | 'housewarming' 
   | 'comfort' 
   | 'work_life' 
   | 'fitness' 
-  | 'sick' 
-  | 'for_me';
+  | 'sick';
 
-export type MainCategoryType = RelationshipType | ThemeType;
+export type SnsCategoryType = 
+  | 'viral' 
+  | 'insta' 
+  | 'fun' 
+  | 'trending';
 
-export type TrackType = 'relationship' | 'theme';
+export type MainCategoryType = RelationshipType | ThemeType | SnsCategoryType;
+
+export type TrackType = 'relationship' | 'theme' | 'sns_hot';
 
 export type GenderType = 'all' | 'female' | 'male';
 
 export type PriceRangeType = 
   | 'all' 
-  | 'under_10k'       // 가성비레전드 (~1만원대)
-  | '20k_30k'         // 짜치지않는가격 (2~3만원대)
-  | '40k_50k'         // 좋아해야주는가격 (4~5만원대)
-  | 'over_100k';      // 돈많이 쓴 선물 (10만원 이상)
+  | 'under_10k'       // 모바일 예의범절용 (1만원 미만)
+  | '20k_30k'         // 사회적 체면 유지용 (1만~3만원대)
+  | '40k_50k'         // 친밀감 검증 완료용 (4~5만원대)
+  | 'over_100k';      // VIP 전용 (10만원 이상)
 
 export interface ProductItem {
   id: string;
