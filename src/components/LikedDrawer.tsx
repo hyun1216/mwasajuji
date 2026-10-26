@@ -74,7 +74,7 @@ export default function LikedDrawer({ isOpen, onClose }: LikedDrawerProps) {
                   <span className="text-[10px] font-black tracking-wider text-stone-400 uppercase">
                     {product.brand}
                   </span>
-                  <h4 className="text-xs font-bold text-[#18181B] truncate tracking-tight">
+                  <h4 className="text-sm font-bold text-[#18181B] line-clamp-1 tracking-tight">
                     {product.name}
                   </h4>
                   <div className="text-xs font-black text-[#E14337] mt-0.5 tracking-tight">

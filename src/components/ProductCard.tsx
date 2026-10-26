@@ -116,11 +116,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {/* Brand & Product Name */}
-          <div className="mb-1.5">
-            <span className="text-[9px] font-black tracking-wider text-stone-400 uppercase block">
+          <div className="mb-2">
+            <span className="text-[10px] font-black tracking-wider text-stone-400 uppercase block mb-0.5">
               {product.brand}
             </span>
-            <h3 className="text-xs font-bold text-[#18181B] leading-snug tracking-tight truncate">
+            <h3 className="text-[15px] sm:text-base font-extrabold text-[#18181B] leading-snug tracking-tight line-clamp-2 break-keep">
               {product.name}
             </h3>
           </div>
