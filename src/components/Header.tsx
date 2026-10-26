@@ -2,7 +2,7 @@
 
 import { useGiftStore } from '@/store/useGiftStore';
 import { useToastStore } from '@/store/useToastStore';
-import { Heart, Share2 } from 'lucide-react';
+import { Heart, Share2, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
@@ -18,6 +18,14 @@ export default function Header({ onOpenLiked }: HeaderProps) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleFocusSearch = () => {
+    const input = document.getElementById('main-search-input') as HTMLInputElement | null;
+    if (input) {
+      input.focus();
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
 
   const handleShareService = async () => {
     if (typeof window === 'undefined') return;
@@ -57,11 +65,20 @@ export default function Header({ onOpenLiked }: HeaderProps) {
         </Link>
 
         {/* Action icons */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
+          <button
+            onClick={handleFocusSearch}
+            aria-label="선물 검색하기"
+            className="p-2.5 rounded-full text-stone-700 hover:text-black hover:bg-stone-200/50 active:scale-95 transition-all cursor-pointer"
+            title="검색"
+          >
+            <Search className="w-4 h-4 stroke-[2.2]" />
+          </button>
+
           <button
             onClick={handleShareService}
             aria-label="공유하기"
-            className="p-2.5 rounded-full text-stone-700 hover:text-black hover:bg-stone-200/50 active:scale-95 transition-all"
+            className="p-2.5 rounded-full text-stone-700 hover:text-black hover:bg-stone-200/50 active:scale-95 transition-all cursor-pointer"
           >
             <Share2 className="w-4 h-4 stroke-[2.2]" />
           </button>

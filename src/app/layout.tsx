@@ -22,15 +22,35 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.mwasajuji.kr"),
   title: "뭐사주지 (MWASAJUJI) | 선 넘지 않는 선물 큐레이션",
-  description: "29CM 감성의 현실적인 모바일 선물 가이드. 관계, 예산, 팩폭 코멘트로 찾는 실패 없는 선물",
+  description: "센스는 챙기고 부담은 덜어낸 모바일 선물 가이드. 관계, 예산, 팩폭 코멘트로 찾는 실패 없는 선물",
   openGraph: {
     title: "뭐사주지 | 선 넘지 않는 선물 큐레이션",
     description: "선 넘지 않는 선물 큐레이션. 1초 만에 찜하고 카톡으로 툭 던지기!",
-    url: "https://mwasajuji.app",
+    url: "https://www.mwasajuji.kr",
     siteName: "뭐사주지",
     locale: "ko_KR",
     type: "website",
+    /* 
+     * 카카오톡, 라인, 슬랙 등 메신저 공유 시 표시되는 Open Graph 이미지입니다.
+     * 파일 위치: /public/og-image.png (권장 해상도: 1200x630)
+     * 이미지가 누락되거나 교체할 경우 public 디렉토리에 'og-image.png' 이름으로 배치해야 정상 작동합니다.
+     */
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "뭐사주지 - 선 넘지 않는 선물 큐레이션",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "뭐사주지 | 선 넘지 않는 선물 큐레이션",
+    description: "선 넘지 않는 선물 큐레이션. 1초 만에 찜하고 카톡으로 툭 던지기!",
+    images: ["/og-image.png"],
   },
 };
 

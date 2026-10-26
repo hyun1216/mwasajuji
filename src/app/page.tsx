@@ -9,6 +9,7 @@ import ProductList from '@/components/ProductList';
 import LikedDrawer from '@/components/LikedDrawer';
 import ScrollToTop from '@/components/ScrollToTop';
 import BurdenModal from '@/components/BurdenModal';
+import SearchBar from '@/components/SearchBar';
 import { useGiftStore } from '@/store/useGiftStore';
 
 export default function Home() {
@@ -26,7 +27,12 @@ export default function Home() {
       <Header onOpenLiked={() => setIsLikedOpen(true)} />
 
       {/* 2. Main Content Body */}
-      <main className="flex-1 px-4 pt-3 space-y-5">
+      <main className="flex-1 px-4 pt-3 space-y-4">
+        {/* Search Bar */}
+        <section aria-label="선물 검색">
+          <SearchBar />
+        </section>
+
         {/* Editorial Sub Title */}
         <section aria-label="선물 카테고리">
           <div className="flex items-center justify-between mb-1 px-0.5">

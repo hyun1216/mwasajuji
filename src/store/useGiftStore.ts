@@ -29,6 +29,11 @@ interface GiftStoreState {
   selectedGender: GenderType;
   selectedTags: string[];
   
+  // Search
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  clearSearchQuery: () => void;
+
   // UI State
   isFilterSheetOpen: boolean;
   isQuickModalOpen: boolean;
@@ -118,6 +123,10 @@ export const useGiftStore = create<GiftStoreState>()(
       selectedGender: 'all',
       selectedTags: [],
       
+      searchQuery: '',
+      setSearchQuery: (query) => set({ searchQuery: query }),
+      clearSearchQuery: () => set({ searchQuery: '' }),
+
       isFilterSheetOpen: false,
       isQuickModalOpen: false,
       isBurdenModalOpen: false,
@@ -151,6 +160,7 @@ export const useGiftStore = create<GiftStoreState>()(
         selectedPrice: 'all',
         selectedGender: 'all',
         selectedTags: [],
+        searchQuery: '',
       }),
       
       setIsFilterSheetOpen: (open) => set({ isFilterSheetOpen: open }),

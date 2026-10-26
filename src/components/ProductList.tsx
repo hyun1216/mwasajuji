@@ -37,19 +37,34 @@ export default function ProductList() {
     selectedPrice,
     selectedGender,
     selectedTags,
+    searchQuery,
+    clearSearchQuery,
     resetFilters,
   } = useGiftStore();
 
   const filteredProducts = useMemo(() => {
     return products.filter((item) => {
-      // 1. Track filter
-      if (item.track !== activeTrack) {
-        return false;
-      }
+      // 0. Search Query filter (matches product title/name, editorComment, brand, tags)
+      if (searchQuery.trim()) {
+        const query = searchQuery.trim().toLowerCase();
+        const matchTitle = item.name.toLowerCase().includes(query);
+        const matchComment = item.editorComment.toLowerCase().includes(query);
+        const matchBrand = item.brand.toLowerCase().includes(query);
+        const matchTags = item.tags.some((tag) => tag.toLowerCase().includes(query));
 
-      // 2. Main Category filter
-      if (selectedCategory !== 'all' && item.mainCategory !== selectedCategory) {
-        return false;
+        if (!matchTitle && !matchComment && !matchBrand && !matchTags) {
+          return false;
+        }
+      } else {
+        // 1. Track filter
+        if (item.track !== activeTrack) {
+          return false;
+        }
+
+        // 2. Main Category filter
+        if (selectedCategory !== 'all' && item.mainCategory !== selectedCategory) {
+          return false;
+        }
       }
 
       // 3. Price filter
@@ -73,7 +88,7 @@ export default function ProductList() {
 
       return true;
     });
-  }, [products, activeTrack, selectedCategory, selectedPrice, selectedGender, selectedTags]);
+  }, [products, activeTrack, selectedCategory, selectedPrice, selectedGender, selectedTags, searchQuery]);
 
   if (isLoading) {
     return (
@@ -98,23 +113,47 @@ export default function ProductList() {
     );
   }
 
+  const isSearching = Boolean(searchQuery.trim());
+
   return (
     <div className="space-y-3 pb-24">
       {/* Magazine Editorial Count Header */}
       <div className="flex items-center justify-between px-1 border-b border-stone-200/80 pb-2">
-        <div className="flex items-center gap-1.5">
-          <span className="text-[10px] font-black uppercase tracking-wider text-stone-400">
-            curated items
-          </span>
-          <span className="w-1 h-1 rounded-full bg-stone-300" />
-          <span className="text-xs font-black text-[#18181B]">
-            {filteredProducts.length}
-          </span>
-        </div>
-        <div className="flex items-center gap-1 text-[11px] font-bold text-stone-500">
-          <Sparkles className="w-3 h-3 text-[#E14337]" />
-          <span>실패 확률 0% 보장 큐레이션</span>
-        </div>
+        {isSearching ? (
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs font-black text-[#E14337]">
+              &apos;{searchQuery.trim()}&apos;
+            </span>
+            <span className="text-xs font-bold text-stone-700">
+              검색 결과 ({filteredProducts.length}개)
+            </span>
+          </div>
+        ) : (
+          <div className="flex items-center gap-1.5">
+            <span className="text-[10px] font-black uppercase tracking-wider text-stone-400">
+              curated items
+            </span>
+            <span className="w-1 h-1 rounded-full bg-stone-300" />
+            <span className="text-xs font-black text-[#18181B]">
+              {filteredProducts.length}
+            </span>
+          </div>
+        )}
+
+        {isSearching ? (
+          <button
+            onClick={clearSearchQuery}
+            className="text-[11px] font-bold text-stone-500 hover:text-black underline flex items-center gap-1 cursor-pointer"
+          >
+            <RotateCcw className="w-3 h-3" />
+            <span>검색 초기화</span>
+          </button>
+        ) : (
+          <div className="flex items-center gap-1 text-[11px] font-bold text-stone-500">
+            <Sparkles className="w-3 h-3 text-[#E14337]" />
+            <span>실패 확률 0% 보장 큐레이션</span>
+          </div>
+        )}
       </div>
 
       {/* Grid or Empty State */}
@@ -125,22 +164,26 @@ export default function ProductList() {
           ))}
         </div>
       ) : (
-        <div className="py-20 px-6 text-center rounded-2xl bg-white border border-dashed border-stone-300">
+        <div className="py-16 px-6 text-center rounded-2xl bg-white border border-dashed border-stone-300">
           <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center mx-auto mb-3 text-stone-400 font-black text-sm">
             ?
           </div>
           <h4 className="text-sm font-black text-[#18181B] tracking-tight">
-            매칭되는 선물이 없습니다
+            {isSearching
+              ? `'${searchQuery.trim()}' 검색 결과가 없습니다`
+              : '매칭되는 선물이 없습니다'}
           </h4>
-          <p className="text-xs text-stone-500 mt-1 max-w-[220px] mx-auto tracking-tight">
-            필터 조건을 조금만 더 가볍게 설정해보세요.
+          <p className="text-xs text-stone-500 mt-1 max-w-[260px] mx-auto tracking-tight leading-relaxed">
+            {isSearching
+              ? '상품명이나 에디터 팩폭 코멘트에 포함된 다른 단어로 검색해 보세요.'
+              : '필터 조건을 조금만 더 가볍게 설정해보세요.'}
           </p>
           <button
-            onClick={resetFilters}
-            className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#18181B] text-[#FAF7F2] text-xs font-bold shadow-xs active:scale-95"
+            onClick={isSearching ? clearSearchQuery : resetFilters}
+            className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#18181B] text-[#FAF7F2] text-xs font-bold shadow-xs active:scale-95 cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>필터 전체 초기화</span>
+            <span>{isSearching ? '검색어 지우고 전체 보기' : '필터 전체 초기화'}</span>
           </button>
         </div>
       )}
