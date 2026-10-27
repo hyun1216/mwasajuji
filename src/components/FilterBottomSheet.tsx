@@ -29,7 +29,7 @@ export default function FilterBottomSheet() {
         animate={{ y: 0 }}
         exit={{ y: '100%' }}
         transition={{ type: 'spring', damping: 28, stiffness: 320 }}
-        className="relative z-10 w-full max-w-[430px] bg-[#FAF7F2] rounded-t-3xl shadow-2xl p-6 border-t border-stone-200"
+        className="relative z-10 w-full max-w-[430px] bg-white rounded-t-3xl shadow-2xl p-6 border-t border-gray-100"
       >
         {/* Drag handle */}
         <div className="w-10 h-1 bg-stone-300 rounded-full mx-auto mb-4" />

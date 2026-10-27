@@ -52,12 +52,18 @@ export interface ProductItem {
 
   // 차별화 요소
   burdenScore: number; // 0 ~ 100% (부담 지수)
+  burdenLevel?: number; // burdenScore alias (0 ~ 100)
   burdenBadgeText: string; // "부담 지수 0% (호불호 없는 카톡 1위)"
   editorComment: string; // "출근길에 가볍게 툭 던져주기 가장 안전한 아이템"
   
+  rating?: number; // 평점 (ex. 4.9)
+  reviewCount?: number; // 리뷰/추천수 (ex. 128)
+
   likesCount: number;
   createdAt: string;
 }
+
+export type Product = ProductItem;
 
 export interface QuickSelectFilter {
   target: RelationshipType | 'any';

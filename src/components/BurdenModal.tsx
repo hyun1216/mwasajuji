@@ -66,7 +66,7 @@ export default function BurdenModal() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ duration: 0.2 }}
-          className="relative z-10 w-full max-w-[400px] bg-[#FAF7F2] rounded-3xl p-6 shadow-2xl border border-stone-200 max-h-[85vh] overflow-y-auto no-scrollbar flex flex-col justify-between"
+          className="relative z-10 w-full max-w-[400px] bg-white rounded-3xl p-6 shadow-2xl border border-gray-100 max-h-[85vh] overflow-y-auto no-scrollbar flex flex-col justify-between"
         >
           {/* Header */}
           <div>

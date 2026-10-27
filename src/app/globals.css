@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F9F8F6;
+  --background: #FFFFFF;
   --foreground: #18181B;
   --accent-tomato: #E14337;
-  --paper-cream: #FAF7F2;
+  --paper-cream: #FFFFFF;
 }
 
 @theme inline {
@@ -31,7 +31,7 @@
 }
 
 body {
-  background-color: #EDECE8;
+  background-color: #F3F4F6;
   color: #18181B;
   font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
@@ -46,5 +46,5 @@ body {
 /* Custom editorial selection */
 ::selection {
   background-color: #18181B;
-  color: #FAF7F2;
+  color: #FFFFFF;
 }

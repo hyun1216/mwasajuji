@@ -47,7 +47,7 @@ export default function Header({ onOpenLiked }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-[#F9F8F6]/90 backdrop-blur-md border-b border-stone-200/70 px-5 py-4 transition-all">
+    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 px-5 py-4 transition-all">
       <div className="flex items-center justify-between">
         {/* Editorial Logo */}
         <Link href="/" className="flex flex-col group">

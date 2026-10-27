@@ -28,7 +28,7 @@ export default function LikedDrawer({ isOpen, onClose }: LikedDrawerProps) {
         animate={{ y: 0 }}
         exit={{ y: '100%' }}
         transition={{ type: 'spring', damping: 26, stiffness: 300 }}
-        className="relative z-10 w-full max-w-[430px] bg-[#FAF7F2] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 max-h-[85vh] flex flex-col border-t sm:border border-stone-200"
+        className="relative z-10 w-full max-w-[430px] bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 max-h-[85vh] flex flex-col border-t sm:border border-gray-100"
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-3.5 border-b border-stone-200">

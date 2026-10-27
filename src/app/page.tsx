@@ -22,7 +22,7 @@ export default function Home() {
   }, [loadProducts]);
 
   return (
-    <div className="flex-1 flex flex-col bg-[#F9F8F6]">
+    <div className="flex-1 flex flex-col bg-white">
       {/* 1. Header */}
       <Header onOpenLiked={() => setIsLikedOpen(true)} />
 
@@ -58,14 +58,14 @@ export default function Home() {
       </main>
 
       {/* 3. Editorial Footer */}
-      <footer className="py-8 px-5 bg-[#FAF7F2] border-t border-stone-200/80 text-center text-stone-400 text-[11px] space-y-2.5">
+      <footer className="py-8 px-5 bg-[#FAFAFA] border-t border-gray-100 text-center text-stone-400 text-[11px] space-y-2.5">
         <div className="font-black text-sm tracking-tighter text-[#18181B] lowercase">
           뭐사주지<span className="text-[#E14337]">.</span>
         </div>
         <p className="text-stone-500 font-medium">선 넘지 않는 선물 큐레이션 가이드</p>
         
         {/* 경제적 이해관계 표시 (공정위 권고 고지 문구) */}
-        <div className="py-2.5 px-3.5 rounded-xl bg-stone-100/90 border border-stone-200 text-stone-500 text-[10px] leading-relaxed break-keep max-w-[380px] mx-auto text-center font-medium">
+        <div className="py-2.5 px-3.5 rounded-xl bg-gray-100/70 border border-gray-200/60 text-stone-500 text-[10px] leading-relaxed break-keep max-w-[380px] mx-auto text-center font-medium">
           이 포스팅은 선물하기 큐레이터 활동의 일환으로, 주문 발생 시 일정액의 수수료를 제공받습니다.
         </div>
 

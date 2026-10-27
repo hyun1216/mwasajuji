@@ -81,17 +81,17 @@ export default function FilterBar() {
       </div>
 
       {/* Horizontal Price Chips with user's editorial labels */}
-      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 -mx-4 px-4">
+      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 -mx-4 px-4 scroll-smooth">
         {PRICE_CHIPS.map((chip) => {
           const isSelected = selectedPrice === chip.id;
           return (
             <button
               key={chip.id}
               onClick={() => setSelectedPrice(chip.id as PriceRangeType)}
-              className={`px-3 py-1.5 rounded-lg text-xs tracking-tight shrink-0 transition-all ${
+              className={`px-3.5 py-1.5 rounded-full text-xs tracking-tight shrink-0 transition-all font-bold cursor-pointer ${
                 isSelected
-                  ? 'bg-stone-900 text-[#FAF7F2] font-black'
-                  : 'bg-white text-stone-600 border border-stone-200/80 font-medium hover:border-stone-400'
+                  ? 'bg-gray-900 text-white shadow-xs'
+                  : 'bg-white text-gray-600 border border-gray-200/90 hover:border-gray-400'
               }`}
             >
               {chip.label}

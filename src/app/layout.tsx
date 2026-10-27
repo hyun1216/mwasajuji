@@ -18,7 +18,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#F9F8F6",
+  themeColor: "#FFFFFF",
 };
 
 export const metadata: Metadata = {
@@ -69,9 +69,9 @@ export default function RootLayout({
       lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#EAE8E3] text-[#18181B] flex justify-center">
+      <body className="min-h-full bg-[#F3F4F6] text-[#18181B] flex justify-center">
         {/* Mobile Device Frame */}
-        <div className="w-full max-w-[430px] min-h-screen bg-[#F9F8F6] shadow-[0_20px_60px_rgba(0,0,0,0.08)] relative flex flex-col border-x border-stone-200/80">
+        <div className="w-full max-w-[430px] min-h-screen bg-white shadow-[0_20px_60px_rgba(0,0,0,0.06)] relative flex flex-col border-x border-gray-100">
           <Toast />
           {children}
         </div>

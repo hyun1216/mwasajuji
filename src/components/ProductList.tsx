@@ -7,21 +7,20 @@ import { RotateCcw, Sparkles } from 'lucide-react';
 
 function ProductSkeleton() {
   return (
-    <div className="bg-white rounded-2xl overflow-hidden border border-stone-200/70 shadow-xs animate-pulse">
-      {/* 16:9 Skeleton Image */}
-      <div className="aspect-[16/9] w-full bg-stone-200" />
+    <div className="bg-white rounded-3xl p-3 border border-gray-100 shadow-xs animate-pulse space-y-2.5">
+      {/* Compact Height Skeleton Image */}
+      <div className="h-[175px] sm:h-[195px] w-full bg-stone-100 rounded-2xl" />
       {/* Skeleton Body */}
-      <div className="p-3.5 pt-2.5 space-y-2">
-        <div className="flex items-center gap-1.5">
-          <div className="w-16 h-3 bg-stone-200 rounded-sm" />
-          <div className="w-48 h-3 bg-stone-100 rounded-sm" />
-        </div>
-        <div className="w-12 h-2.5 bg-stone-100 rounded-sm" />
-        <div className="w-3/4 h-4 bg-stone-200 rounded-sm" />
-        <div className="w-24 h-5 bg-stone-200 rounded-sm pt-1" />
-        <div className="pt-2 border-t border-stone-100 flex gap-2">
-          <div className="w-8 h-7 bg-stone-100 rounded-lg" />
-          <div className="flex-1 h-7 bg-stone-200 rounded-lg" />
+      <div className="space-y-2 pt-0.5">
+        <div className="w-full h-8 bg-stone-100 rounded-2xl" />
+        <div className="w-20 h-3 bg-stone-100 rounded-full" />
+        <div className="w-4/5 h-4 bg-stone-200 rounded-md" />
+        <div className="flex justify-between items-center pt-1.5 border-t border-gray-100">
+          <div className="w-24 h-5 bg-stone-200 rounded-md" />
+          <div className="flex gap-1.5">
+            <div className="w-8 h-7 bg-stone-100 rounded-xl" />
+            <div className="w-20 h-7 bg-stone-200 rounded-xl" />
+          </div>
         </div>
       </div>
     </div>
@@ -156,7 +155,7 @@ export default function ProductList() {
         )}
       </div>
 
-      {/* Grid or Empty State */}
+      {/* 1-column layout: Spacious & Full Title Visibility */}
       {filteredProducts.length > 0 ? (
         <div className="space-y-3.5">
           {filteredProducts.map((product) => (

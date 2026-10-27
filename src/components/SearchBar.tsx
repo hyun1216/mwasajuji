@@ -16,7 +16,7 @@ export default function SearchBar() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="선물 이름, 팩폭 코멘트 검색 (예: 립밤, 머그컵, 집들이)"
-          className="w-full pl-10 pr-9 py-2.5 bg-white border border-stone-200/90 rounded-2xl text-xs font-semibold text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-[#18181B] shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all"
+          className="w-full pl-10 pr-9 py-2.5 bg-white border border-gray-200/90 rounded-full text-xs font-semibold text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-900 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition-all"
         />
         {searchQuery && (
           <button
