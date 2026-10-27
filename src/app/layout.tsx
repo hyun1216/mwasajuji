@@ -52,6 +52,11 @@ export const metadata: Metadata = {
     description: "선 넘지 않는 선물 큐레이션. 1초 만에 찜하고 카톡으로 툭 던지기!",
     images: ["/og-image.png"],
   },
+  verification: {
+    other: {
+      "naver-site-verification": "e211c91d60b016d7be542ad47c048db61b7dac19",
+    },
+  },
 };
 
 export default function RootLayout({
