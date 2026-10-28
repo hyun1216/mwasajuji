@@ -139,7 +139,7 @@ export default function ProductList() {
           </div>
         )}
 
-        {isSearching ? (
+        {isSearching && (
           <button
             onClick={clearSearchQuery}
             className="text-[11px] font-bold text-stone-500 hover:text-black underline flex items-center gap-1 cursor-pointer"
@@ -147,11 +147,6 @@ export default function ProductList() {
             <RotateCcw className="w-3 h-3" />
             <span>검색 초기화</span>
           </button>
-        ) : (
-          <div className="flex items-center gap-1 text-[11px] font-bold text-stone-500">
-            <Sparkles className="w-3 h-3 text-[#E14337]" />
-            <span>실패 확률 0% 보장 큐레이션</span>
-          </div>
         )}
       </div>
 

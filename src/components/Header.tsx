@@ -4,6 +4,7 @@ import { useGiftStore } from '@/store/useGiftStore';
 import { useToastStore } from '@/store/useToastStore';
 import { Heart, Share2, Search } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 interface HeaderProps {
@@ -50,16 +51,16 @@ export default function Header({ onOpenLiked }: HeaderProps) {
     <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 px-5 py-4 transition-all">
       <div className="flex items-center justify-between">
         {/* Editorial Logo */}
-        <Link href="/" className="flex flex-col group">
-          <div className="flex items-center gap-2">
-            <span className="font-black text-2xl tracking-tighter text-[#18181B] font-sans lowercase select-none">
-              뭐사주지<span className="text-[#E14337]">.</span>
-            </span>
-            <span className="text-[9px] font-black tracking-widest px-1.5 py-0.5 uppercase bg-[#18181B] text-[#FAF7F2] rounded-xs">
-              issue #01
-            </span>
-          </div>
-          <span className="text-[11px] font-medium text-stone-500 tracking-tight mt-0.5">
+        <Link href="/" className="flex items-end gap-2 sm:gap-2.5 group">
+          <Image
+            src="/logo.png"
+            alt="뭐사주지"
+            width={2172}
+            height={724}
+            priority
+            className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+          />
+          <span className="text-[10px] sm:text-[11px] font-medium text-stone-500 tracking-tight pb-0.5 select-none whitespace-nowrap">
             선 넘지 않는 선물 큐레이션
           </span>
         </Link>

@@ -35,14 +35,6 @@ export default function Home() {
 
         {/* Editorial Sub Title */}
         <section aria-label="선물 카테고리">
-          <div className="flex items-center justify-between mb-1 px-0.5">
-            <span className="text-[10px] font-black tracking-widest uppercase text-stone-400">
-              ARCHIVE 2026
-            </span>
-            <span className="text-[11px] font-bold text-[#E14337] tracking-tight">
-              실시간 큐레이션 ON
-            </span>
-          </div>
           <TrackTabs />
         </section>
 
