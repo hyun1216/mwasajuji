@@ -33,6 +33,15 @@ const SAMPLE_URLS = [
   { label: '네이버 쇼핑 (숙취해소제)', url: 'https://smartstore.naver.com/item/891011' },
 ];
 
+function extractCleanUrl(text: string): string {
+  if (!text) return '';
+  const match = text.match(/https?:\/\/[^\s]+/i);
+  if (match) {
+    return match[0].replace(/[.,;:!?)\]]+$/, '').trim();
+  }
+  return text.trim();
+}
+
 export default function AdminPage() {
   const router = useRouter();
   const { addCustomProduct } = useGiftStore();
@@ -126,17 +135,19 @@ export default function AdminPage() {
 
   // Handle URL analyze
   const handleAnalyzeUrl = async () => {
-    if (!inputUrl.trim()) {
+    const cleanUrl = extractCleanUrl(inputUrl);
+    if (!cleanUrl) {
       showToast('분석할 선물 링크를 입력해주세요.', 'warn');
       return;
     }
+    setInputUrl(cleanUrl);
 
     try {
       setIsLoading(true);
       const res = await fetch('/api/admin/scrape', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: inputUrl.trim() }),
+        body: JSON.stringify({ url: cleanUrl }),
       });
 
       const data = await res.json();
@@ -377,9 +388,23 @@ export default function AdminPage() {
             <div className="relative flex items-center">
               <LinkIcon className="w-4 h-4 absolute left-3 text-stone-400" />
               <input
-                type="url"
+                type="text"
                 value={inputUrl}
-                onChange={(e) => setInputUrl(e.target.value)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (val.includes('http://') || val.includes('https://')) {
+                    setInputUrl(extractCleanUrl(val));
+                  } else {
+                    setInputUrl(val);
+                  }
+                }}
+                onPaste={(e) => {
+                  const pasted = e.clipboardData.getData('text');
+                  if (pasted && (pasted.includes('http://') || pasted.includes('https://'))) {
+                    e.preventDefault();
+                    setInputUrl(extractCleanUrl(pasted));
+                  }
+                }}
                 placeholder="https://gift.kakao.com/... 또는 쇼핑몰 링크"
                 className="w-full pl-9 pr-3 py-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl text-xs font-medium text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-[#18181B] transition-colors"
               />

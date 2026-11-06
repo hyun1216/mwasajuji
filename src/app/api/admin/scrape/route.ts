@@ -13,6 +13,16 @@ interface ScrapeRequest {
   url: string;
 }
 
+// 0. Helper: Extract pure URL from text (removes promotional prefixes/suffixes)
+function extractCleanUrl(text: string): string {
+  if (!text) return '';
+  const match = text.match(/https?:\/\/[^\s]+/i);
+  if (match) {
+    return match[0].replace(/[.,;:!?)\]]+$/, '').trim();
+  }
+  return text.trim();
+}
+
 // 1. Helper: Extract pure price number from string
 function parsePriceNumber(text: string): number | null {
   if (!text) return null;
@@ -230,9 +240,10 @@ export async function POST(req: NextRequest) {
     }
 
     const body = (await req.json()) as ScrapeRequest;
-    const { url } = body;
+    const rawUrl = body?.url;
+    const url = typeof rawUrl === 'string' ? extractCleanUrl(rawUrl) : '';
 
-    if (!url || typeof url !== 'string') {
+    if (!url || !/^https?:\/\//i.test(url)) {
       return NextResponse.json(
         { error: '유효한 선물 URL을 입력해주세요.' },
         { status: 400 }
