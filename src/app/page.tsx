@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
-import TrackTabs from '@/components/TrackTabs';
+import CategoryNav from '@/components/CategoryNav';
 import FilterBar from '@/components/FilterBar';
 import FilterBottomSheet from '@/components/FilterBottomSheet';
 import ProductList from '@/components/ProductList';
@@ -33,9 +33,9 @@ export default function Home() {
           <SearchBar />
         </section>
 
-        {/* Editorial Sub Title */}
+        {/* Editorial Sub Title: Category Navigation */}
         <section aria-label="선물 카테고리">
-          <TrackTabs />
+          <CategoryNav />
         </section>
 
         {/* Filtering Options: Price Chips, Gender, Tags */}
